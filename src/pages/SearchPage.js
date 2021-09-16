@@ -7,7 +7,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import * as AppConstants from '../AppConstants';
 
-// To show a more used alternative to inline styles
+// To show a cleaner/more used alternative to inline styles
 const useStyles = makeStyles({
     form: {
         display: 'flex',
@@ -79,6 +79,7 @@ export default function SearchPage({ results, setResults, setResult }) {
         history.push('details');
     }
 
+    // To show another material-ui alternative to inline code, and reduce styles written twice
     const ResultButton = withStyles({
         label: {
             display: 'flex',

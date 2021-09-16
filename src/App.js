@@ -1,21 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { AppBar, Toolbar } from '@material-ui/core';
+import { useState } from 'react';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import DetailsPage from './pages/DetailsPage';
+import SearchPage from './pages/SearchPage';
 
-function App() {
+export default function App() {
+    const [results, setResults] = useState({});
+    const [result, setResult] = useState(null);
+
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
+            <AppBar position="relative">
+                <Toolbar>GitHub Repository Search App</Toolbar>
+            </AppBar>
+            <Router>
+                <Switch>
+                    <Route path="/details">{result ? <DetailsPage result={result} /> : <Redirect to="/" />}</Route>
+                    <Route path="/">
+                        <SearchPage results={results} setResults={setResults} setResult={setResult} />
+                    </Route>
+                </Switch>
+            </Router>
         </div>
     );
 }
-
-export default App;
